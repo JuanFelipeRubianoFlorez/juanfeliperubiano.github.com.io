@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CAMBIAR: título del libro -->
+    <title>Análisis: El inversor inteligente — Felipe Rubiano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #1a1510;
+            color: #e8dfd4;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: #d4a574; }
+        a:hover { text-decoration: underline; }
+
+        /* Nav */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 5%; height: 72px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(26,21,16,0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(212,165,116,0.08);
+        }
+        .nav-brand { font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.25rem; color: #e8dfd4; text-decoration: none; }
+        .nav-brand span { color: #d4a574; }
+        .nav-back { font-size: 0.85rem; color: #d4a574; font-weight: 500; text-decoration: none; }
+        .nav-back:hover { text-decoration: underline; }
+
+        /* Book header */
+        .book-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 140px 5% 60px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .book-header-cover {
+            width: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .book-header-cover img {
+            width: 100%; height: auto;
+            display: block;
+        }
+        .book-header-cover .cover-placeholder {
+            width: 200px; height: 280px;
+            background: rgba(255,255,255,0.03);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; border-radius: 12px;
+        }
+        .book-header-info .book-cat {
+            font-size: 0.65rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            padding: 4px 10px; border-radius: 100px;
+            display: inline-block; margin-bottom: 14px;
+        }
+        .cat-finanzas { background: rgba(16,185,129,0.1); color: #10b981; }
+        .cat-negocios { background: rgba(99,102,241,0.1); color: #818cf8; }
+        .cat-desarrollo { background: rgba(251,191,36,0.1); color: #fbbf24; }
+        .cat-novelas { background: rgba(236,72,153,0.1); color: #ec4899; }
+        .book-header-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 700; line-height: 1.2;
+            color: #e8dfd4; margin-bottom: 8px;
+        }
+        .book-header-info .book-author {
+            font-size: 1rem; color: #8a7a68;
+            font-style: italic; margin-bottom: 16px;
+        }
+        .book-header-info .book-rating {
+            color: #d4a574; font-size: 1rem;
+            letter-spacing: 3px; margin-bottom: 16px;
+        }
+        .book-meta {
+            display: flex; gap: 24px; flex-wrap: wrap;
+        }
+        .meta-item {
+            font-size: 0.8rem; color: #5a4a3a;
+        }
+        .meta-item strong { color: #8a7a68; }
+
+        /* Article body */
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+        article h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem; font-weight: 600;
+            color: #e8dfd4; margin: 48px 0 16px;
+        }
+        article p {
+            font-size: 1.05rem; color: #9a8a78;
+            line-height: 1.85; margin-bottom: 20px;
+        }
+        article blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem; font-style: italic;
+            color: #b8a898; padding-left: 24px;
+            border-left: 3px solid #d4a574;
+            margin: 32px 0; line-height: 1.6;
+        }
+        article ul {
+            padding-left: 24px; margin-bottom: 20px;
+        }
+        article li {
+            font-size: 1.05rem; color: #9a8a78;
+            line-height: 1.85; margin-bottom: 8px;
+        }
+
+        /* Key ideas box */
+        .key-ideas-box {
+            background: rgba(212,165,116,0.04);
+            border: 1px solid rgba(212,165,116,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+        .key-ideas-box h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem; font-weight: 600;
+            color: #d4a574; margin-bottom: 16px;
+        }
+        .key-idea {
+            font-size: 0.95rem; color: #9a8a78;
+            padding-left: 20px; position: relative;
+            line-height: 1.7; margin-bottom: 10px;
+        }
+        .key-idea::before {
+            content: '—'; position: absolute; left: 0; color: #d4a574;
+        }
+
+        /* Recommendation box */
+        .recommendation {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(212,165,116,0.08);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .recommendation h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem; font-weight: 600;
+            color: #e8dfd4; margin-bottom: 8px;
+        }
+        .recommendation p {
+            font-size: 0.95rem; color: #8a7a68;
+            margin: 0;
+        }
+
+        /* Tags */
+        .article-tags {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 48px; padding-top: 32px;
+            border-top: 1px solid rgba(212,165,116,0.08);
+        }
+        .article-tags span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; padding: 5px 14px;
+            border: 1px solid rgba(212,165,116,0.1);
+            border-radius: 100px; color: #8a7a68;
+        }
+
+        /* Back */
+        .back-to-books {
+            max-width: 720px; margin: 0 auto;
+            padding: 0 5% 80px;
+        }
+        .back-to-books a {
+            font-size: 0.9rem; font-weight: 600;
+            color: #d4a574; text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 40px 5%;
+            border-top: 1px solid rgba(212,165,116,0.06);
+        }
+        footer p { font-size: 0.78rem; color: #5a4a3a; }
+        footer span { color: #d4a574; }
+
+        @media (max-width: 640px) {
+            .book-header { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+            .book-header-cover { width: 160px; }
+            .book-meta { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="nav-brand">FR<span>.</span></a>
+        <a href="../libros.html" class="nav-back">← Volver a libros</a>
+    </nav>
+
+    <!-- BOOK HEADER -->
+    <div class="book-header">
+        <div class="book-header-cover">
+            <!-- CAMBIAR: src por la portada del libro -->
+            <img src="../assets/img/libro-ejemplo.jpg" alt="El inversor inteligente"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=cover-placeholder>📘</div>';">
+        </div>
+        <div class="book-header-info">
+            <!-- CAMBIAR: categoría -->
+            <span class="book-cat cat-finanzas">Finanzas</span>
+            <!-- CAMBIAR: título y autor -->
+            <h1>El inversor inteligente</h1>
+            <div class="book-author">Benjamin Graham</div>
+            <!-- CAMBIAR: rating -->
+            <div class="book-rating">★★★★★</div>
+            <div class="book-meta">
+                <!-- CAMBIAR: estos datos -->
+                <div class="meta-item"><strong>Año:</strong> 1949</div>
+                <div class="meta-item"><strong>Páginas:</strong> 640</div>
+                <div class="meta-item"><strong>Leído:</strong> 2025</div>
+            </div>
+        </div>
+    </div>
+
+    <article>
+        <!-- CAMBIAR: todo el contenido de aquí abajo -->
+
+        <h2>De qué trata</h2>
+        <p>Aquí va tu resumen del libro en tus propias palabras. No es una sinopsis de Wikipedia — es cómo tú lo entendiste y qué problema intenta resolver el autor.</p>
+
+        <div class="key-ideas-box">
+            <h3>Ideas clave que me quedaron</h3>
+            <div class="key-idea">Primera idea importante del libro y por qué te impactó.</div>
+            <div class="key-idea">Segunda idea y cómo la conectas con tu experiencia o conocimiento.</div>
+            <div class="key-idea">Tercera idea y su aplicación práctica.</div>
+        </div>
+
+        <h2>Mi análisis</h2>
+        <p>Aquí va tu opinión extendida. ¿Qué te gustó? ¿Qué no? ¿Cómo cambió tu forma de pensar? ¿Lo conectas con otros libros o con tu trabajo en data science?</p>
+
+        <blockquote>
+            Puedes incluir una cita del libro que te haya marcado especialmente.
+        </blockquote>
+
+        <p>Más de tu análisis. Sé honesto — las mejores reseñas son las que tienen opinión real, no las que solo resumen.</p>
+
+        <h2>Para quién es este libro</h2>
+        <p>Describe el perfil de lector ideal. ¿Necesita conocimientos previos? ¿Es para principiantes o avanzados? ¿Lo recomendarías antes o después de otro libro?</p>
+
+        <div class="recommendation">
+            <h3>Veredicto</h3>
+            <p>Una frase corta y contundente sobre tu recomendación final.</p>
+        </div>
+
+        <div class="article-tags">
+            <span>finanzas</span>
+            <span>inversiones</span>
+            <span>value investing</span>
+        </div>
+    </article>
+
+    <div class="back-to-books">
+        <a href="../libros.html">← Volver a libros</a>
+    </div>
+
+    <footer>
+        <p>Diseñado por <span>Felipe Rubiano</span> · 2025</p>
+    </footer>
+
+</body>
+</html>
