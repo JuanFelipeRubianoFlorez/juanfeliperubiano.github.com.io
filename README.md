@@ -1,2 +1,2 @@
-# juanfeliperubiano.github.com.io
+# juanfeliperubiano.github.io
 Creación de mi pag web personal
